@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+    src: url('//at.alicdn.com/t/font_2249342_u92sd77r94.eot?t=1607110194802'); /* IE9 */
+    src: url('//at.alicdn.com/t/font_2249342_u92sd77r94.eot?t=1607110194802#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPgAAsAAAAAB8gAAAOUAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDHAqDCIJ+ATYCJAMQCwoABCAFhG0HQhvqBlFUTjpkX2MyZExvkSIhhIhpYDK0w1s8y1GIBcXx5vjGLUBpGObwewIggq/9yn4z8+H+HrKikNyKBSCFWD4VlYpKVCJ8hAa5SsQB69N7NKfX8oCF+ZEi5sAnTenDIzZmxhAIM8Ug54AUZ4cosFOOMKG2HLuW4cmO8Ilx+Yhf35HXwSY4WZGaEJKUVuE+X2daAuoCd4YL4aX0mAn9n2OmqxLIDzSXyLLM57MNcBStA4qOI7sDwVOZrmFywUx0P4HOuliGo+W1rWBXGMMC8ULgKbCndEpNemiFumRuSfFBpU3v0h7w3v/7+C857CRVZoy9+KiMhcJf8Fhrmh6CGy4CfzwL1EVk7AMK8aTUdo8pDOxj0vHOZvuBVisxVpPx8ez/PxPsRdaadlLvf17UjNRR0Ecw8wtskPjFK5PXQnADqQW0SHoJfGZQVq1RSWJyMiBgpfOd6I49PuaMCD5v08uOp3rv9X0uiDCXY3ve9FCTN08qp43z6hkBSFkBCV/XcAi9b5jYPt7enMKWOrOln8CL8LFicjsteo/F5HLqtVqd1qDTG/LgDtpZSPIz2eMy0j+R8Eh6fVjb78kOLy22Jz5MqY9qC8aOlqYX1v/w7jq7VOKs7kiacomx0en/zVtvKrJKpBIptr8LgCTeQcVSMKsAslWuMuEmFP24As0VM4JD5l9HhUQN2szY3hgy95PZOgvwLfEkcm6y3ajnD9mMARvvsICePoefv3zasbbr6bRDPfppv+jf/fLxVQ0Gl/8kmLizCkSAIbMtv/ZpmXZzufoMReEv7GdXGWgdCMrdaXvXUPD1dSlZEvbj/wd+a/4Piyk2cIVCCH0pZTK+oP1ExTUWkNCZLoZwTXsYQzHHUwmtuRiSxhpkrQ1kwe6DSk8faq0D0NmrYnHPDJlJlBHssUAQJi1BMm4A2aR9ZMHeQ2XeE9QmwwSd6xG2Zs9WCL4lMqZUzCJ6BAkM8XKWUfUN0psxr7kpOSn0qe1YVgQ3SopPzIYrsBfLY0xQdD5ZVTnEycSDyukw7HYTJMrEiRk13qGqYnZCAlf2Q/EM8YCvI2QYRYWxENoIRMAgvDg3v8o39/vNMJ7GjSLXZOSs7TCZQmgdSRIvsQWyQuZtlXEtjyh0vGQqFQfhyAgPpJwsmNsMEIhY3ssJY6jiOXr4RNkSWC6urSx+foXnCVdAx7i+RIocJSr1c0oYFrx2xUE0hvLyZgfxYAA=') format('woff2'),
+    url('//at.alicdn.com/t/font_2249342_u92sd77r94.woff?t=1607110194802') format('woff'),
+    url('//at.alicdn.com/t/font_2249342_u92sd77r94.ttf?t=1607110194802') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('//at.alicdn.com/t/font_2249342_u92sd77r94.svg?t=1607110194802#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-kaixin:before {
+    content: "\e64c";
+  }
+  
+  .icon-shoucang:before {
+    content: "\e600";
+  }
+  
+  .icon-home:before {
+    content: "\e602";
+  }
+  

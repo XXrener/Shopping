@@ -1,0 +1,23 @@
+<view>
+  首页 成功引入 
+  图标
+  <text class="iconfont icon-kaixin"></text>
+</view>
+  <view>
+    通过 阿里巴巴图库 登录 github 
+  </view>
+    
+    <view>
+      选好加入购物车
+    </view>
+    <view>
+      通过fontclass 生成路径
+      全选文件
+      在项目新建
+      粘贴 
+      然后
+      在全局 
+      app.wxss 引入
+    </view>
+      
+      
