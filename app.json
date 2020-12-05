@@ -15,6 +15,10 @@
     "pages/pay/index"
   ],
   "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#409EFF",
+    "position": "bottom",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -44,9 +48,9 @@
   },
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#409EFF",
     "navigationBarTitleText": "购物商场",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

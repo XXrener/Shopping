@@ -1,0 +1,20 @@
+{
+    "debug.console.fontSize": 20,
+    "markdown.preview.fontSize": 18,
+    "terminal.integrated.fontSize": 20,
+    "terminal.integrated.fontWeightBold": "normal",
+    "editor.fontWeight": "normal",
+    "liveSassCompile.settings.formats":[
+        {
+            "format": "expanded",
+            "extensionName": ".wxss",
+            "savePath": null
+        }
+    ],
+     /* 去掉sass的.map文件 */
+    "liveSassCompile.settings.generateMap": false,
+    "files.associations": {
+        "*.wxml": "html",
+        "*.wxss": "css"
+    }
+}

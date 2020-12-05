@@ -1,1 +1,20 @@
-@import './style/iconfont.wxss'
+/*  app.wxss文件
+    外引入icon 样式图标（从阿里巴巴图标库生成样式文件引入） 
+组件wxml使用类名<text class="iconfont icon-kaixin"></text> */
+@import './style/iconfont.wxss';
+/* 原生样式不支持 css 统配符 '*'手动输入标签 设置默认 清空样式 */
+page,view,text,swiper,swiper-item,image,navigator{
+    padding:0;
+    margin: 0;
+    box-sizing: border-box; /* 采用ie盒子样式 边框为宽为内边距和宽 、高 */
+}
+/* 全局颜色定制 定义变量颜色 */
+page{
+    /* 主题颜色变量 使用css变量规则 定义 --变量名 引用 color: var(--themeColor)*/
+    --themeColor:#409EFF;
+    --fontColor:#555;
+    /* 全局字体大小,可以在页面样式文件覆盖 优先级 页面文件>全局文件 */
+    /* 微信全局兼容尺寸的方式rpx 手机端自适应 对应web端 1px = 2rpx */
+    /* 全局默认字体 14px */
+    font-size: 28rpx;
+}

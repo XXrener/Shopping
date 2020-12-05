@@ -1,4 +1,8 @@
 <view>
+  <SearchInput></SearchInput>
+</view>
+  
+<view>
   首页 成功引入 
   图标
   <text class="iconfont icon-kaixin"></text>
