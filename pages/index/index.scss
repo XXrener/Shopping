@@ -1,0 +1,29 @@
+page{
+    /* color: var(--themeColor); */
+    .home-swiper{
+      
+        // border: 1px #000 solid;
+        background-color: #999;
+        swiper{
+            width: 750rpx;
+            height: 340rpx;
+            padding: 10rpx;
+            background-color: #90caf9;
+            image{
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+    }   
+    .home-items{
+        display: flex;
+        navigator{
+            flex: 1;
+            padding: 20rpx;
+            image{
+                width: 100%;
+            }
+        }
+    }       
+}

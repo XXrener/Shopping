@@ -1,27 +1,52 @@
 <view>
-  <SearchInput></SearchInput>
-</view>
-  
-<view>
-  首页 成功引入 
-  图标
-  <text class="iconfont icon-kaixin"></text>
-</view>
   <view>
-    通过 阿里巴巴图库 登录 github 
+    <SearchInput></SearchInput>
   </view>
     
-    <view>
-      选好加入购物车
-    </view>
-    <view>
-      通过fontclass 生成路径
-      全选文件
-      在项目新建
-      粘贴 
-      然后
-      在全局 
-      app.wxss 引入
-    </view>
+  <view>
+    <!-- <text>{{listSwiper.image_src}}</text> -->
+  </view>
+  <!-- 轮播图 -->
+  <view class="home-swiper">
+    <swiper 
+      indicator-dots="true" 
+      indicatc="#555" 
+      indicator-active-color="#00000" 
+      autoplay="true"
+      current="index"
+      interval="3000"
+      duration="500"
+      circular="true"
+      snap-to-edge="false"
+      display-multiple="{{item.lenght}}"  >
+      <swiper-item wx:for="{{listSwiper}}"
+        wx:key="goods_id">
+      
+          <image src="{{item.image_src}}" mode="aspectFit">
+
+          </image>
+      
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 轮播图结束 -->
+  <view class="home-items">
+    <navigator
+      wx:for="{{catitemslist}}"
+      wx:key="name" 
+      class="home-items-nav" 
+      target="self" url="" 
+      hover-class="navigator-hover" 
+      open-type="navigateBack">
+      <image class="" src="{{item.image_src}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
+    </navigator>
+      
+  </view>
+</view>
+
+  
+
+  
+  
       
       
