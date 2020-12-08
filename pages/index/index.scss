@@ -1,6 +1,6 @@
 page{
     /* color: var(--themeColor); */
-    .home-swiper{
+    .home-swiper{   /* 轮播图 */
       
         // border: 1px #000 solid;
         background-color: #999;
@@ -16,6 +16,7 @@ page{
         }
         
     }   
+    /* 导航 */
     .home-items{
         display: flex;
         navigator{
@@ -23,6 +24,49 @@ page{
             padding: 20rpx;
             image{
                 width: 100%;
+            }
+        }
+    }
+    /* 楼层展示 */
+    .home-floor{
+        padding: 0 10rpx;
+        .home-floor-items{
+            .floor-title{
+                // 楼层标题
+                padding: 20rpx 10rpx;
+                .floor-image{
+                    width: 100%;
+                }
+            }
+            .floor-content{ //内容分区
+                overflow: hidden;
+                .floor-item{
+                   
+                    width: 33.33%;
+                    float: left;
+                    
+                    &:nth-last-child(-n+4){ /* 计算剩余四张图的高度比   */
+
+                        /* 
+                            第一张图 宽 跟 高 ：  232 * 386 
+                            宽高比 ：  232 / 386 = 33.33% / height(高未知数)
+                            第一张图片高度  height:33.33vw * 386 / 232
+                            剩余图片除2
+
+                        */
+                        box-sizing: border-box;
+                        padding-left: 10rpx;
+                        height: 33vw*386/232/2;
+                    }  
+                    &:nth-child(2),
+                    &:nth-child(3){
+                       padding-bottom: 10rpx;
+                    }
+                    .list-image{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
             }
         }
     }       

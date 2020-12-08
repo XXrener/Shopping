@@ -41,7 +41,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.0.4",
   "appid": "wx6933fa51ed5c6ee5",
-  "projectname": "demo01",
+  "projectname": "shopping",
   "debugOptions": {
     "hidedInDevtools": []
   },
@@ -50,23 +50,24 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "分类",
+          "pathName": "pages/category/index",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }

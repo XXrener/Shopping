@@ -9,12 +9,12 @@ Page({
     catitemslist:'',  //导航分类
     floorlist:'',     //楼层分类
     list:            //导航跳转路径 覆盖导航路径
-      {list:[
+      [
         {navigator_url: "/pages/category/main"},
         {navigator_url: "/pages/category/main"},
         {navigator_url: "/pages/category/main"},
         {navigator_url: "/pages/category/main"}
-      ]}
+      ]
              
   }, 
   //options(Object)
@@ -39,47 +39,50 @@ Page({
     }); */
     /* 浅层封装后的请求 */
     
-    console.log(api+'/swiperdata',"你是什么")
-      request({url:api+"swiperdata"})
+    console.log(api+'api/public/v1/home/swiperdata',"你是什么")
+      request({url:api+"api/public/v1/home/swiperdata"})
       .then(res=>{
         this.setData({
           listSwiper:res.data.message
         })
+        console.log(this.data.listSwiper,"轮播图");
       })
       .catch( err => {
         console.log(err)
       });
       /* 导航数据 */
-      request({url:api+'catitems'})
+      request({url:api+'api/public/v1/home/catitems'})
       .then( res => {
         console.log(res,"导航")
         let data = res.data.message;
         const nav = this.data.list
-        let navs = new Object()
-
+        
+        console.log(data)
         //给获取的数据添加跳转链接
-        for (let i = 0; i < data.length; i++) {
-          const list = data[i];
-          console.log(typeof list,"循环后的数据")
-          list.path = nav   //给每个对象添加全部路径 进行二次循环赋值
-        }
+        let datas = data.map((item) =>{
+            console.log(item ,"遍历出来后是什么")
+             if(!item.path){
+              item.path = nav
+             }
+             return item
+        })
 
-
+        console.log(datas,"添加后的数据")
 
         // data.push(this.data.list)
         
         this.setData({
-          catitemslist:data
-        })
-        console.log(this.data.catitemslist,"添加后的数据")
+          catitemslist:datas
+        });
+        console.log(this.data.catitemslist,"赋值后的数据")
       })
       .catch( err => {
         console.log(err)
       })
       /* 楼层图数据 */
-      request({url:api+'floordata'})
+      request({url:api+'api/public/v1/home/floordata'})
       .then( res => {
-        console.log(res,"楼层")
+        console.log(res.data.message,"楼层")
         this.setData({
           floorlist:res.data.message
         })

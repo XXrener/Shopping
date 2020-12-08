@@ -30,6 +30,7 @@
     </swiper>
   </view>
   <!-- 轮播图结束 -->
+  <!-- 导航栏 -->
   <view class="home-items">
     <navigator
       wx:for="{{catitemslist}}"
@@ -40,8 +41,60 @@
       open-type="navigateBack">
       <image class="" src="{{item.image_src}}" mode="widthFix" lazy-load="false" binderror="" bindload="" />
     </navigator>
+  </view>
+  <!-- 导航结束 -->
+  <!-- 楼层 -->
+  <view class="home-floor">
+    <view 
+      class="home-floor-items"
+      wx:for="{{floorlist}}"
+      wx:for-item="title"
+      wx:for-index="indexTitle"
+      wx:key='floor_title'
+      >
+      <!-- 标题 -->
+      <view class="floor-title">
+        <image 
+          class="floor-image" 
+          src="{{title.floor_title.image_src}}" 
+          mode="widthFix" 
+          lazy-load="false" 
+          binderror=""
+          bindload="" />
+      </view>
+        <!-- 标题内容 -->
+        <view class="floor-content">
+          <navigator
+            class="floor-item"
+            wx:for="{{title.product_list}}" 
+            wx:key="name"
+            wx:for-item="list"
+            wx:for-index="indexList" 
+            target="self" 
+            url="" 
+            hover-class="navigator-hover" 
+            open-type="navigate">
+            <image 
+              class="list-image" 
+              src="{{list.image_src}}" 
+              mode="{{indexList==0?'widthFix':'scrollToFill'}}" 
+              lazy-load="false" 
+              binderror="" 
+              bindload="" />
+              
+            <!-- {{indexList}} -->
+          </navigator>
+        </view>
+          
+          
+    </view>
+      
+        
+    
       
   </view>
+  <!-- 楼层结束 -->
+    
 </view>
 
   

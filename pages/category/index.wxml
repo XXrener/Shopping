@@ -1,2 +1,12 @@
-<!--pages/category/index.wxml-->
-<text>pages/category/index.wxml</text>
+<view class="cates">
+    <!-- 搜索 -->
+    <SearchInput></SearchInput>
+    <!-- 结束搜索 -->
+    <!-- 内容区 -->
+    <view class="cat-container">
+        <scroll-view class="left-menu">
+            
+        </scroll-view>
+    </view>
+      
+</view>
