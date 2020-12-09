@@ -51,7 +51,7 @@ Page({
         console.log(err)
       });
       /* 导航数据 */
-      request({url:api+'api/public/v1/home/catitems'})
+      request({url:'api/public/v1/home/catitems'})
       .then( res => {
         console.log(res,"导航")
         let data = res.data.message;
@@ -80,7 +80,7 @@ Page({
         console.log(err)
       })
       /* 楼层图数据 */
-      request({url:api+'api/public/v1/home/floordata'})
+      request({url:'api/public/v1/home/floordata'})
       .then( res => {
         console.log(res.data.message,"楼层")
         this.setData({

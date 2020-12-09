@@ -13,7 +13,10 @@ Page({
     //右侧内容
     rightContent:[],
     //导航按钮
-    itemindex:0
+    itemindex:0,
+    // 滚动条Y轴的值
+    righttop:0,
+    lefttop:0
   },
   /* 同层级可以定义变量 */
     cates:[],
@@ -50,7 +53,7 @@ Page({
   /* 定义获取数据 分类渲染 */
   getRequest(){
     request({
-      url:api+'api/public/v1/categories'
+      url:'api/public/v1/categories'
     })
     .then(res =>{
       this.cates = res.data.message;
@@ -66,7 +69,9 @@ Page({
       let rightContent = this.cates[0].children;
       this.setData({
         leftMenuList,
-        rightContent
+        rightContent,
+        // 点击一次重置一次
+        
       })
     })
     .catch(err =>{
@@ -81,7 +86,9 @@ Page({
     let rightContent = this.cates[index].children;
     this.setData({
       itemindex:index,
-      rightContent
+      rightContent,
+      // lefttop:0,
+        righttop:0
     })
     
   },

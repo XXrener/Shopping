@@ -5,7 +5,7 @@
     <!-- 内容区 -->
     <view class="cat-container">
         <!-- 左侧菜单 -->
-        <scroll-view class="left-menu" scroll-y="true">
+        <scroll-view class="left-menu" scroll-y="true" scroll-top="{{lefttop}}">
            <view
             class="menu-item  {{index === itemindex?'titleBule':''}}"
             wx:for="{{leftMenuList}}"
@@ -17,7 +17,7 @@
            </view>       
         </scroll-view>
         <!-- 右侧分类 -->
-        <scroll-view class="right-content" scroll-y="true">
+        <scroll-view class="right-content" scroll-y="true" scroll-top="{{righttop}}">
             <view class="right-item"
                 wx:for="{{rightContent}}"    
                 wx:for-item="rightItem"
