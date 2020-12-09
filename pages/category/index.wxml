@@ -4,8 +4,55 @@
     <!-- 结束搜索 -->
     <!-- 内容区 -->
     <view class="cat-container">
-        <scroll-view class="left-menu">
-            
+        <!-- 左侧菜单 -->
+        <scroll-view class="left-menu" scroll-y="true">
+           <view
+            class="menu-item  {{index === itemindex?'titleBule':''}}"
+            wx:for="{{leftMenuList}}"
+            bindtap="handleItemTap"
+            data-index="{{index}}"
+            wx:key="*this"
+            >
+              {{item}} 
+           </view>       
+        </scroll-view>
+        <!-- 右侧分类 -->
+        <scroll-view class="right-content" scroll-y="true">
+            <view class="right-item"
+                wx:for="{{rightContent}}"    
+                wx:for-item="rightItem"
+                wx:for-index="rightIndex"
+                wx:key="cat_id"
+            >
+                <!-- 标题 -->
+                <view class="right-item-title">
+                   <text class="delimiter">/</text>
+                    {{rightItem.cat_name}}
+                   <text class="delimiter">/</text>
+                </view>
+                  <view class="right-item-group">
+                    <view 
+                    class="right-children"
+                    wx:for="{{rightItem.children}}"    
+                    wx:for-item="rightChild"
+                    wx:for-index="childIndex"
+                    wx:key="cat_id"
+                    >
+                    <navigator class="right-item-nav">
+                        <image class="rightImage"
+                            mode="widthFix"
+                            src="{{rightChild.cat_icon}}">
+                        </image>
+                        <text class="grouptext">
+                            {{rightChild.cat_name}}
+                        </text>
+                    </navigator>  
+                  </view>
+                  </view>
+                    
+                    
+            </view>
+              
         </scroll-view>
     </view>
       

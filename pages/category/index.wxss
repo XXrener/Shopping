@@ -1,1 +1,96 @@
 /* pages/category/index.wxss */
+page {
+  height: 100%;
+}
+
+.cates {
+  height: 100%;
+}
+
+.cates .cat-container {
+  height: calc(100vh - 90rpx);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.cates .cat-container .left-menu {
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+}
+
+.cates .cat-container .left-menu .menu-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80rpx;
+}
+
+.cates .cat-container .left-menu .menu-item.titleBule {
+  color: #2196f3;
+}
+
+.cates .cat-container .right-content {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+}
+
+.cates .cat-container .right-content .right-item .right-item-title {
+  height: 80rpx;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ededf0;
+}
+
+.cates .cat-container .right-content .right-item .right-item-title .delimiter {
+  padding: 0 15rpx;
+}
+
+.cates .cat-container .right-content .right-item .right-item-group {
+  background-color: #fbfbfc;
+  margin: 0 10rpx;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.cates .cat-container .right-content .right-item .right-item-group .right-children {
+  width: 33.33%;
+}
+
+.cates .cat-container .right-content .right-item .right-item-group .right-children .right-item-nav {
+  padding: 10rpx;
+}
+
+.cates .cat-container .right-content .right-item .right-item-group .right-children .right-item-nav iamge {
+  height: 100%;
+}
+
+.cates .cat-container .right-content .right-item .right-item-group .right-children .right-item-nav text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
