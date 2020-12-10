@@ -5,67 +5,28 @@
     bind:handleTabsChange="OnHandleItemChange">
     <block wx:if="{{tabs[0].isActive==true}}">
         <!-- 页面内容 -->
-       <view class="tabs-group">
+       <navigator class="tabs-group"
+        wx:for="{{goodslist}}" 
+        wx:key="goods_id"
+       >
             <!-- 左侧图片 -->
             <view class="group-image">
                 <image 
                     class="left-image" 
                     mode="widthFix" 
-                    src="https://api-hmugo-web.itheima.net/full/2fb113b32f7a2b161f5ee4096c319afedc3fd5a1.jpg">
+                    src="{{item.goods_small_logo?item.goods_small_logo:'../../icons/lose.png'}}">
                 </image>
             </view>
             <!-- 右侧内容 -->
             <view class="group-item">
                 <view class="item-name">
-                    创维（Skyworth）65V9E 65英寸25核4K HDR高清智能电视
+                    {{item.goods_name}}
                 </view>
                 <view class="item-price">
-                    ￥6499
+                    ￥{{item.goods_price}}
                 </view>
             </view>         
-       </view>
-         <!-- 页面内容 -->
-         <view class="tabs-group">
-            <!-- 左侧图片 -->
-            <view class="group-image">
-                <image 
-                    class="left-image" 
-                    mode="widthFix" 
-                    src="https://api-hmugo-web.itheima.net/full/2fb113b32f7a2b161f5ee4096c319afedc3fd5a1.jpg">
-                </image>
-            </view>
-            <!-- 右侧内容 -->
-            <view class="group-item">
-                <view class="item-name">
-                    创维（Skyworth）65V9E 65英寸25核4K HDR高清智能电视
-                </view>
-                <view class="item-price">
-                    ￥6499
-                </view>
-            </view>         
-       </view>
-         <!-- 页面内容 -->
-         <view class="tabs-group">
-            <!-- 左侧图片 -->
-            <view class="group-image">
-                <image 
-                    class="left-image" 
-                    mode="widthFix" 
-                    src="https://api-hmugo-web.itheima.net/full/2fb113b32f7a2b161f5ee4096c319afedc3fd5a1.jpg">
-                </image>
-            </view>
-            <!-- 右侧内容 -->
-            <view class="group-item">
-                <view class="item-name">
-                    创维（Skyworth）65V9E 65英寸25核4K HDR高清智能电视
-                </view>
-                <view class="item-price">
-                    ￥6499
-                </view>
-            </view>         
-       </view>
-       
-         
+       </navigator>  
     </block>
     <block wx:if="{{tabs[1].isActive==true}}">
         1111

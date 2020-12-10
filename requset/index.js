@@ -28,7 +28,8 @@ module.exports={
                 ...prarms,
                 url:api+prarms.url,
                 success: (result) => {
-                    return resolve(result)
+                    // 直接返回数据
+                    return resolve(result.data.message)
                 },
                 fail: (err) => {
                     return reject(err)

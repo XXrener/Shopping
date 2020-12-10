@@ -1,4 +1,5 @@
 // pages/goods_list/index.js
+import { request } from "../../requset/index";
 Page({
 
   /**
@@ -22,9 +23,18 @@ Page({
         value:"价格",
         isActive:false
       }
-    ]
+    ],
+    // 页面数据源
+    goodslist:[]
   },
-  /* 自定义事件 e.detail 获取自定义组件的参数 */
+  /* 同级变量 get 请求参数 */
+  QueryParams:{
+    query:"",
+    cid:"",
+    pagenum:1,
+    pagesize:10
+  },
+  /* 自定义事件 e.detail 获取自定义组件的参数 点击后 更改原数组isActive值 进行切换 */
   OnHandleItemChange(e){
     console.log(e,"父组件的事件")
     /* 结构赋值 */
@@ -36,8 +46,16 @@ Page({
     });
     /* 源数据列表改变后 需要再次保存 */
     this.setData({
-      tabs
+      tabs 
     })
+  },
+  /* get 请求 */
+  async getGoodList(){
+     let res =await request({url:"api/public/v1/goods/search",data:this.QueryParams})
+     console.log(res)
+     this.setData({
+       goodslist:res.goods
+     })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -45,7 +63,11 @@ Page({
   onLoad: function (options) {
     /* 传递参数的获取 */
     console.log(options,"你是我填的值吗");
+    this.QueryParams.uid = options.uid;
+    this.getGoodList()
+    
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
