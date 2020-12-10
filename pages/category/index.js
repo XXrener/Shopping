@@ -56,7 +56,7 @@ Page({
       url:'api/public/v1/categories'
     })
     .then(res =>{
-      this.cates = res.data.message;
+      this.cates = res;
       /* 本地缓存 类似浏览器的localStorage */
       wx.setStorageSync("cates", {time:Date.now(),data:this.cates});
         

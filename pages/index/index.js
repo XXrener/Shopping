@@ -39,11 +39,11 @@ Page({
     }); */
     /* 浅层封装后的请求 */
     
-    console.log(api+'api/public/v1/home/swiperdata',"你是什么")
-      request({url:api+"api/public/v1/home/swiperdata"})
+    
+      request({url:"api/public/v1/home/swiperdata"})
       .then(res=>{
         this.setData({
-          listSwiper:res.data.message
+          listSwiper:res
         })
         console.log(this.data.listSwiper,"轮播图");
       })
@@ -54,7 +54,7 @@ Page({
       request({url:'api/public/v1/home/catitems'})
       .then( res => {
         console.log(res,"导航")
-        let data = res.data.message;
+        let data = res;
         const nav = this.data.list
         
         console.log(data)
@@ -82,9 +82,9 @@ Page({
       /* 楼层图数据 */
       request({url:'api/public/v1/home/floordata'})
       .then( res => {
-        console.log(res.data.message,"楼层")
+        console.log(res,"楼层")
         this.setData({
-          floorlist:res.data.message
+          floorlist:res
         })
       })
       .catch( err => {

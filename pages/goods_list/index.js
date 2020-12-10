@@ -25,9 +25,11 @@ Page({
       }
     ],
     // 页面数据源
-    goodslist:[]
+    goodslist:[],
+    // 总页数
+    pagetotal:3
   },
-  /* 同级变量 get 请求参数 */
+  /* page变量 get 请求参数 */
   QueryParams:{
     query:"",
     cid:"",
@@ -51,11 +53,27 @@ Page({
   },
   /* get 请求 */
   async getGoodList(){
-     let res =await request({url:"api/public/v1/goods/search",data:this.QueryParams})
+     let res = await request({url:"api/public/v1/goods/search",data:this.QueryParams})
      console.log(res)
-     this.setData({
-       goodslist:res.goods
-     })
+    // 计算总页数 总条数 / 页面条数 向上取整 Math.ceil()
+    // 接口数据太多 测试下 直接设置总页数为3
+   /*  const total = res.total;
+    this.pagetotal = Math.ceil(total / this.QueryParams.pagesize) */
+    
+    // 更新本地数据存储方法 防止覆盖参数 数组拼接
+    //方法1
+  
+    let data = this.data.goodslist;
+    data.push(...res.goods)
+    this.setData({
+      goodslist:data
+    })
+    
+    /*  视频方法  
+        this.setData({
+          goodslist:[...this.data.goodslist,...res.goods]
+       }) 
+    */
   },
   /**
    * 生命周期函数--监听页面加载
@@ -101,14 +119,24 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+      
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.data.pagetotal>this.QueryParams.pagenum){
+      this.QueryParams.pagenum++;
+      console.log(this.QueryParams.pagenum,"自增之后的页数")
+      this.getGoodList()
+    }else{
+      console.log('%c 没有数据了',' text-shadow: 0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);font-size:5em;')
+      wx.showToast({
+        title: '没有下一页了'
+      });
+        
+    }
   },
 
   /**
