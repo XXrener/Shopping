@@ -1,0 +1,32 @@
+/* pages/goods_list/index.wxss */
+.tabs-group{
+    display:flex;
+    
+    .group-image{
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .left-image{
+            width: 80%;
+        }
+    }
+    .group-item{
+        flex: 3;
+        display: flex;
+        justify-content:space-around;
+        flex-direction: column;
+
+        .item-name{
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+
+        }
+        .item-price{
+            color: red;
+            font-size: 32rpx;
+        }
+    }
+}

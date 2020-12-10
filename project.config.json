@@ -6,13 +6,13 @@
   "setting": {
     "urlCheck": true,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
     "newFeature": false,
     "coverView": true,
-    "nodeModules": false,
+    "nodeModules": true,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
@@ -39,7 +39,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.0.4",
+  "libVersion": "2.12.2",
   "appid": "wx6933fa51ed5c6ee5",
   "projectname": "shopping",
   "debugOptions": {
@@ -65,6 +65,12 @@
           "name": "分类",
           "pathName": "pages/category/index",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "页面详情",
+          "pathName": "pages/goods_list/index",
+          "query": "uid=10",
           "scene": null
         }
       ]

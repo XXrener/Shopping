@@ -38,7 +38,10 @@
                     wx:for-index="childIndex"
                     wx:key="cat_id"
                     >
-                    <navigator class="right-item-nav">
+                    <navigator 
+                     class="right-item-nav"
+                     url="/pages/goods_list/index?uid={{rightChild.cat_id}}"   
+                     >
                         <image class="rightImage"
                             mode="widthFix"
                             src="{{rightChild.cat_icon}}">
