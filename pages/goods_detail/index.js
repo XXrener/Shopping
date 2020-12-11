@@ -24,11 +24,13 @@ Page({
     console.log(id,"请求内的ID")
     let detailList = await request({url:'api/public/v1/goods/detail',data:{goods_id:id}})
     /* 优化数据获取 省略不必要数据 提升性能 */
+
     this.setData({
       detailList:{
         goods_name:detailList.goods_name,
         goods_price:detailList.goods_price,
-        goods_introduce:detailList.goods_introduce,
+        //前端替换webp格式 ios系统不支持 
+        goods_introduce:detailList.goods_introduce.replace(/\.webp/g,'.jpg'),
         pics:detailList.pics
 
       }
