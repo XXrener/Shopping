@@ -8,7 +8,8 @@ Page({
   data: {
     detailList:[]
   },
-
+  /* 全局变量 */
+  GoodsList:{},
   /**
    * 生命周期函数--监听页面加载
    */
@@ -24,7 +25,7 @@ Page({
     console.log(id,"请求内的ID")
     let detailList = await request({url:'api/public/v1/goods/detail',data:{goods_id:id}})
     /* 优化数据获取 省略不必要数据 提升性能 */
-
+        this.GoodsList = detailList
     this.setData({
       detailList:{
         goods_name:detailList.goods_name,
@@ -36,6 +37,17 @@ Page({
       }
     })
     console.log(this.data.detailList,"赋值参数")
+  },
+  /* 新页面预览图片 */
+  handlePreview(e){ 
+    console.log(e)
+    let current = e.currentTarget.dataset.url
+    let urls = this.GoodsList.pics.map(v=> v.pics_mid)
+    wx.previewImage({
+      current,
+      urls
+    });
+      
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
