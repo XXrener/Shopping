@@ -4,5 +4,6 @@
     "tabs":"../../components/tabs/tabs"
    
   },
-  "onReachBottomDistance":60
+  "onReachBottomDistance":60,
+  "navigationBarTitleText": "商品列表"
 }

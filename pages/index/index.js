@@ -37,60 +37,89 @@ Page({
       fail: (err) => {console.log(err);},
       complete: () => {}
     }); */
-    /* 浅层封装后的请求 */
-    
-    
-      request({url:"api/public/v1/home/swiperdata"})
-      .then(res=>{
-        this.setData({
-          listSwiper:res
-        })
-        console.log(this.data.listSwiper,"轮播图");
-      })
-      .catch( err => {
-        console.log(err)
+    console.log(this.data.listSwiper.length,"轮播图")
+    if(this.data.listSwiper.length == 0 ){
+      wx.showLoading({
+        title: "正在加载轮播图",
+        mask: true
       });
-      /* 导航数据 */
-      request({url:'api/public/v1/home/catitems'})
-      .then( res => {
-        console.log(res,"导航")
-        let data = res;
-        const nav = this.data.list
-        
-        console.log(data)
-        //给获取的数据添加跳转链接
-        let datas = data.map((item) =>{
-            console.log(item ,"遍历出来后是什么")
-             if(!item.path){
-              item.path = nav
-             }
-             return item
-        })
+      wx.nextTick(()=>{
+        setTimeout(()=>{
+          this.getSlidesShow()
+        },500)
+      })
+      
 
-        console.log(datas,"添加后的数据")
-
-        // data.push(this.data.list)
-        
-        this.setData({
-          catitemslist:datas
+      if(this.data.catitemslist.length== 0 ){
+        wx.showLoading({
+          title: "正在加载导航栏",
+          mask: true
         });
-        console.log(this.data.catitemslist,"赋值后的数据")
-      })
-      .catch( err => {
-        console.log(err)
-      })
-      /* 楼层图数据 */
-      request({url:'api/public/v1/home/floordata'})
-      .then( res => {
-        console.log(res,"楼层")
-        this.setData({
-          floorlist:res
+        
+        wx.nextTick(()=>{
+          setTimeout(()=>{
+            this.getNavigation()
+          },500)
         })
-      })
-      .catch( err => {
-        console.log(err)
-      })
+        if(this.data.floorlist.length== 0 ){
+          wx.showLoading({
+            title: "正在加载楼层数据",
+            mask: true
+          });
+          
+          wx.nextTick(()=>{
+            setTimeout(()=>{
+              this.getFloor() 
+            },500)
+          })
+        }
+      }
+
+    }
+  
+    /* 轮播图请求 */
+
+      /* 导航数据 */
+      
+      /* 楼层图数据 */
+      
      
+  },
+  /* 轮播请求 */
+  async getSlidesShow(){
+    let res = await request({url:"api/public/v1/home/swiperdata"})
+      this.setData({
+        listSwiper:res
+      })
+      wx.showLoading({
+        title: "轮播图加载完成",
+        mask: true
+      });
+        
+  },
+  /*导航请求*/
+  async getNavigation(){
+    let res = await request({url:'api/public/v1/home/catitems'})
+    this.setData({
+      catitemslist:res
+    });
+      wx.showLoading({
+        title: "导航栏加载完成",
+        mask: true
+      });
+        
+  },
+  /* 楼层请求 */
+  async getFloor(){
+    let res =await request({url:'api/public/v1/home/floordata'})
+    this.setData({
+      floorlist:res
+    })
+    wx.showLoading({
+      title: "楼层数据加载完成",
+      mask: true
+    });
+    wx.hideLoading()
   },
   onReady: function() {
     
