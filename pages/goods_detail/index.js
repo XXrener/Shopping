@@ -23,8 +23,15 @@ Page({
   async getDdetail(id){
     console.log(id,"请求内的ID")
     let detailList = await request({url:'api/public/v1/goods/detail',data:{goods_id:id}})
+    /* 优化数据获取 省略不必要数据 提升性能 */
     this.setData({
-      detailList
+      detailList:{
+        goods_name:detailList.goods_name,
+        goods_price:detailList.goods_price,
+        goods_introduce:detailList.goods_introduce,
+        pics:detailList.pics
+
+      }
     })
     console.log(this.data.detailList,"赋值参数")
   },
