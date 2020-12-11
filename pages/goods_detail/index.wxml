@@ -13,12 +13,12 @@
             wx:for="{{detailList.pics}}"
             wx:key="pics_id"
             bindtap="handlePreview"
-            data-url="{{item.pics_mid}}"
+            data-url="{{item.pics_mid }}"
             >
             <image 
                 class="detail-swiper-image" 
                 mode="widthFix" 
-                src="{{item.pics_mid}}">
+                src="{{item.pics_mid?item.pics_mid:'../../icons/lose.png'}}">
             </image>
         </swiper-item>
     </swiper>
@@ -43,5 +43,29 @@
         <rich-text class="detail-info-content" nodes="{{detailList.goods_introduce}}"></rich-text>
     </view>
     <!-- 详情+富文本结束 -->
+    <!-- 底部工具栏 -->
+    <view class="detail-footer">
+        <view class="footer-group">
+            <view class="iconfont icon-kefu"></view>         
+                客服 
+                <button open-type="contact"></button>
+        </view>
+        <view class="footer-group">
+            <view class="iconfont icon-fen_xiang"></view>           
+                分享
+                <button open-type="share"></button>
+        </view>
+        <navigator class="footer-group" url="/pages/cart/index" open-type="switchTab">
+            <view class="iconfont icon-cart"></view>       
+                购物车
+        </navigator>
+        <view class="footer-group footer-buy">
+            立即购买
+        </view>
+        <view class="footer-group footer-cart">
+            加入购物车
+        </view>
+    </view>
+      
 </view>
   
