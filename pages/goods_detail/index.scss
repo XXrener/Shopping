@@ -1,0 +1,78 @@
+/* pages/goods_detail/index.wxss */
+.detail-home{
+    // 详情轮播
+   .detail-swiper{
+       height: 70vw;
+       background-color: #dedede;
+       .detail-swiper-item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           .detail-swiper-image{
+                width: 70%;
+           }
+       }
+   } 
+//    价格+收藏
+   .detail-collect{
+    //    border: 2rpx solid #dedede;
+        box-sizing: content-box;
+        border-top: 10rpx solid #dedede;
+        border-bottom: 10rpx solid #dedede;
+       .detail-price{
+           color: red;
+           font-size: 38rpx;
+       }
+       .collect-item{
+        //    position: absolute;
+           display:flex;
+           
+           .goods-name{
+               flex: 5;
+               padding: 0 10rpx;
+               font-size: 28rpx;
+            //    第二行超出使用省略号
+                display: -webkit-box;
+                overflow: hidden;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+
+           }
+           .collect{
+               flex: 1;
+               &::before{
+                content: '';
+                 /*设置margin: 0 auto; 加上相对定位的left和right都为零 可让伪元素在active中水平居中*/
+                margin: 0 auto;
+                height: 28px;
+                width: 2px;
+                background-color: #151616;
+                position: absolute;
+                right: 120rpx;
+            }
+            //    padding: 10rpx;
+               display: flex;
+               flex-direction: column;
+               justify-content:space-around;
+               align-items: center;
+               .iconfont{}
+               .collect-text{
+                   font-size: 28rpx;
+                //    line-height: 28rpx;
+               }
+           }
+       }
+   }
+//    详情+富文本
+   .detail-info{
+       .detail-info-name{
+            font-size: 64rpx;
+            font-weight: bold;
+            color: var(--themeColor);
+            padding: 20rpx 0;
+            border-bottom: 20rpx solid #dedede;
+
+       }
+       .detail-info-content{}
+   }
+}

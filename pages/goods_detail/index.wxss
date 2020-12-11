@@ -1,1 +1,93 @@
+@charset "UTF-8";
 /* pages/goods_detail/index.wxss */
+.detail-home .detail-swiper {
+  height: 70vw;
+  background-color: #dedede;
+}
+
+.detail-home .detail-swiper .detail-swiper-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.detail-home .detail-swiper .detail-swiper-item .detail-swiper-image {
+  width: 70%;
+}
+
+.detail-home .detail-collect {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  border-top: 10rpx solid #dedede;
+  border-bottom: 10rpx solid #dedede;
+}
+
+.detail-home .detail-collect .detail-price {
+  color: red;
+  font-size: 38rpx;
+}
+
+.detail-home .detail-collect .collect-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.detail-home .detail-collect .collect-item .goods-name {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.detail-home .detail-collect .collect-item .collect {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.detail-home .detail-collect .collect-item .collect::before {
+  content: '';
+  /*设置margin: 0 auto; 加上相对定位的left和right都为零 可让伪元素在active中水平居中*/
+  margin: 0 auto;
+  height: 28px;
+  width: 2px;
+  background-color: #151616;
+  position: absolute;
+  right: 120rpx;
+}
+
+.detail-home .detail-collect .collect-item .collect .collect-text {
+  font-size: 28rpx;
+}
+
+.detail-home .detail-info .detail-info-name {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: var(--themeColor);
+  padding: 20rpx 0;
+  border-bottom: 20rpx solid #dedede;
+}
