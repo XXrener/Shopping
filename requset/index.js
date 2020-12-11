@@ -20,9 +20,19 @@ exports.request = request */
 
 /* 个人自定义封装 */
 // const api='https://api-hmugo-web.itheima.net/api/public/v1/home/'
+let ajaxTimes = 0;
 const api='https://api-hmugo-web.itheima.net/'
 module.exports={
+    
+      
     request:(prarms)=>{
+        wx.showLoading({
+            title: "加载中",
+            mask: true
+        });
+        // 次数加一
+        ajaxTimes++;
+
         return new Promise( (resolve,reject)=>{
             wx.request({
                 ...prarms,
@@ -34,7 +44,13 @@ module.exports={
                 fail: (err) => {
                     return reject(err)
                 },
-                complete: () => {}
+                complete: () => {
+                    ajaxTimes--;
+                    if(ajaxTimes==0 ){
+                        wx.hideLoading();
+                          
+                    }
+                }
             });
               
         })
