@@ -91,23 +91,19 @@ Page({
     let {id} = e.currentTarget.dataset;
     //本页商品源数据
     let {cart} = this.data;
-    //定义要删除的数组下标
-    let newindex = -1;
-    console.log(cart,"本地缓存的")
+  
     cart.forEach( (v,index)=>{
       if(v.goods_id===id){
         if(v.num>1){
           v.num--
         }else{
-          newindex = index
+          //删除为0 的商品
+          cart.splice(index,1)
         }
       }
       return;
     })
-    //删除为0 的商品
-    if(newindex!=-1){
-      cart.splice(newindex,1)
-    }
+    
     //调用重新计算价格
     this.onPriceAndNumber(cart)
   },
