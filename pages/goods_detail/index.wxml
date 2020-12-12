@@ -59,11 +59,14 @@
             <view class="iconfont icon-cart"></view>       
                 购物车
         </navigator>
+        <view 
+            class="footer-group footer-cart"
+            bindtap="handleCartAdd"
+            >
+            加入购物车
+        </view>
         <view class="footer-group footer-buy">
             立即购买
-        </view>
-        <view class="footer-group footer-cart">
-            加入购物车
         </view>
     </view>
       

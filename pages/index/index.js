@@ -43,37 +43,43 @@ Page({
         title: "正在加载轮播图",
         mask: true
       });
+      setTimeout(()=>{
+        this.getSlidesShow()
+      },500)
       wx.nextTick(()=>{
-        setTimeout(()=>{
-          this.getSlidesShow()
-        },500)
+       
+        if(this.data.catitemslist.length== 0 ){
+          wx.showLoading({
+            title: "正在加载导航栏",
+            mask: true
+          });
+          setTimeout(()=>{
+            this.getNavigation()
+          },800)
+          wx.nextTick(()=>{
+            if(this.data.floorlist.length== 0 ){
+              wx.showLoading({
+                title: "正在加载楼层数据",
+                mask: true
+              });
+              
+              wx.nextTick(()=>{
+                setTimeout(()=>{
+                  this.getFloor() 
+                  setTimeout(()=>{
+                    wx.hideLoading()
+                  },1000)
+                },500)
+              })
+            }
+            
+          })
+         
+        }
       })
       
 
-      if(this.data.catitemslist.length== 0 ){
-        wx.showLoading({
-          title: "正在加载导航栏",
-          mask: true
-        });
-        
-        wx.nextTick(()=>{
-          setTimeout(()=>{
-            this.getNavigation()
-          },500)
-        })
-        if(this.data.floorlist.length== 0 ){
-          wx.showLoading({
-            title: "正在加载楼层数据",
-            mask: true
-          });
-          
-          wx.nextTick(()=>{
-            setTimeout(()=>{
-              this.getFloor() 
-            },500)
-          })
-        }
-      }
+      
 
     }
   
@@ -119,7 +125,7 @@ Page({
       title: "楼层数据加载完成",
       mask: true
     });
-    wx.hideLoading()
+   
   },
   onReady: function() {
     

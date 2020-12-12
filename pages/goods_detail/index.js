@@ -49,6 +49,43 @@ Page({
     });
       
   },
+  /* 加入购物车 */
+  handleCartAdd(){
+    console.log("加入购物车");
+    //获取缓存的页面数据 findIndex 传入要遍历的数组 返回数组中符合条件的的第一个值的索引 找到后直接返回 剩下的不在找了
+    let cart = wx.getStorageSync('cart')||[];
+     let index = cart.findIndex((v)=>{
+       return v.goods_id === this.GoodsList.goods_id
+     }) 
+     if(index=== -1){
+       //初始添加 给数组添加num属性
+       this.GoodsList.num = 1;
+       this.GoodsList.checked = true;
+       cart.push(this.GoodsList)
+     }else{
+       if(cart.num>=this.GoodsList.goods_number){
+         wx.showToast({
+           title: '商品已经卖完了',
+           icon: 'fail',
+           duration: 1500,
+           mask: true
+         });
+           
+       }else{
+        
+         cart[index].num++;
+         wx.showToast({
+           title: '已加入购物车',
+           icon: 'success',
+           duration: 1500,
+           mask: true,
+         });
+           
+       }
+     }
+    //  把更新的数组存入缓存中
+     wx.setStorageSync('cart',cart);
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
