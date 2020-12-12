@@ -14,7 +14,9 @@ Page({
     allChecked:false,
     //总价格 总数量
     totalling:0,
-    totallnum:0
+    totallnum:0,
+    // 选择框数组
+    checkedList:[]
   },
   /* 自定义事件 */
   //收货地址
@@ -23,31 +25,14 @@ Page({
   //版本更新 默认授权 测试工具没更新 真机直接调用接口
   /* 页面周期函数 */
   onShow(){
+    // 页面显示 渲染地址
     let address = wx.getStorageSync('address');
     //购买商品存在为0情况 使用或运算符  商品为零 取空数组 确保变量类型正确
     let cart = wx.getStorageSync('cart')||[];
-
-    //不用单独遍历 直接在计算总价格时判断 提高性能
-    // let allChecked = cart.length?cart.every( i => i.checked ===true ):false;
-    let allChecked = true;
-    let totalling = 0;
-    let totallnum = 0;
-    cart.forEach(v =>{
-      if(v.checked===true){
-          totalling+= v.goods_price*v.num;
-          totallnum +=v.num
-      }else{
-        allChecked=false
-      }
-    })
-    //二次判定 购物车为零时 让全选=false
-    allChecked=cart.length!=0?allChecked:false;
+    //调用计算价格与数量
+    this.onPriceAndNumber(cart)
     this.setData({
-      address,
-      cart,
-      allChecked,
-      totalling,
-      totallnum
+      address
     })
       
   },
@@ -63,14 +48,108 @@ Page({
         console.log(err,"抛出错误")
       }
   },
- /* 商品选择框 */
- changeBox(e){
-    console.log(e,"改变状态")
- },
- checkboxChange(e){
-   console.log(e,"自带事件")
- }
+ /* 商品单选框 */
+ changeChecked(e){
+    // 1.拿到商品id 
+    let {id} = e.currentTarget.dataset;
+    // 2.获取页面的商品数组 本地缓存直接覆盖
+    let {cart} = this.data;
 
+    // 3.改变数组中checked值
+    cart.map(v =>{
+      if(v.goods_id===id){
+        v.checked= !v.checked
+      }
+    })
+    //重新算总价格 跟 总数量
+    this.onPriceAndNumber(cart)
+ },
+ /* 商品全选框 */
+ changeAllChecked(){
+  let {allChecked} = this.data;
+  this.setData({
+    allChecked:!allChecked
+  })
+  if(this.data.allChecked===false){
+    let totalling = 0 ;
+    let totallnum = 0 ;
+    this.setData({
+      totalling,
+      totallnum
+    })
+  }else{
+    let cart = wx.getStorageSync('cart');
+    cart.forEach( v=> v.checked =true)
+    this.onPriceAndNumber(cart)
+      
+  }
+  console.log(allChecked,"全选值")
+ },
+//  商品数量减
+  reduce(e){
+    //商品ID
+    let {id} = e.currentTarget.dataset;
+    //本页商品源数据
+    let {cart} = this.data;
+    //定义要删除的数组下标
+    let newindex = -1;
+    console.log(cart,"本地缓存的")
+    cart.forEach( (v,index)=>{
+      if(v.goods_id===id){
+        if(v.num>1){
+          v.num--
+        }else{
+          newindex = index
+        }
+      }
+      return;
+    })
+    //删除为0 的商品
+    if(newindex!=-1){
+      cart.splice(newindex,1)
+    }
+    //调用重新计算价格
+    this.onPriceAndNumber(cart)
+  },
+// 商品数量加
+  augment(e){
+    let {id} = e.currentTarget.dataset;
+    let {cart} = this.data;
+    cart.forEach( v=>{
+      if(v.goods_id===id){
+        v.num++
+      }
+      return;
+    })
+    this.onPriceAndNumber(cart)
+  },
+  //计算总价格与数量
+  onPriceAndNumber(arr){
+   //接受数组
+   let cart = arr;
+   let totalling = 0;
+   let totallnum = 0;
+   let allChecked =true;
+   cart.forEach(v=>{
+     if(v.checked===true){
+       totalling += v.num * v.goods_price
+       totallnum +=v.num
+     }else{
+       allChecked= false
+     }
+   })
+  //  数组为 0 二次判断全选状态 
+  allChecked = cart.length!=0?allChecked:false
+  // 保存页面数据
+  this.setData({
+    cart,
+    totalling,
+    totallnum,
+    allChecked
+  })
+  // 将新数组覆盖本地缓存
+  wx.setStorageSync("cart", cart);
+ }
   /* 消息提示
   openConfirm: function () {
     wx.showModal({

@@ -101,25 +101,27 @@ page{
                     -webkit-line-clamp: 2;
                     color: #666;
                 }
-                // 价格数量工具
+                // 价格+数量工具
                 .group-goods{
                     display: flex;
+                    justify-content: space-around;
                     .price{
                       flex: 1;
                       color: red;
                       font-size: 36rpx;
                     }
                     .goods-tools{
+                        flex: 1;
                        display: flex;
-                       justify-content: space-around;
+                    //    justify-content: space-around;
                         view{
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                           width: 55rpx; 
-                           height: 55rpx;
-                           border: 1rpx solid #dedede;
-                           color: #666;
+                            width: 55rpx; 
+                            height: 55rpx;
+                            border: 1rpx solid #dedede;
+                            color: #666;
                         }
                         .num{
                             border: none;

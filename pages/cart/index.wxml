@@ -34,8 +34,8 @@
               wx:key="goods_id"
               >
                 <!-- 复选框 -->
-              <checkbox-group class="checked">
-                    <checkbox checked="{{item.checked}}" />      
+              <checkbox-group class="checked" bindchange="changeChecked" data-id="{{item.goods_id}}">
+                    <checkbox checked="{{item.checked}}"  />      
               </checkbox-group>
                 <!-- 图片 -->
                 <navigator class="info-image">
@@ -57,13 +57,13 @@
                             </view>
                             <!-- 数量工具 -->
                             <view class="goods-tools">
-                                <view>
+                                <view bindtap="reduce" data-id="{{item.goods_id}}">
                                     -
                                 </view>
                                     <view class="num">
                                         {{item.num}}
                                     </view>
-                                    <view>
+                                    <view bindtap="augment" data-id="{{item.goods_id}}">
                                         +
                                     </view>
                                         
@@ -83,7 +83,7 @@
      <view class="base">
          <!-- 全选 -->
         <view class="base-checked">
-            <checkbox-group bindchange="">
+            <checkbox-group bindchange="changeAllChecked">
                 <checkbox checked="{{allChecked}}" />全选
             </checkbox-group>
               

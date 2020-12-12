@@ -143,6 +143,8 @@ page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .home-cart .cart-content .cart-info .info-group .group-goods .price {
@@ -154,11 +156,12 @@ page {
 }
 
 .home-cart .cart-content .cart-info .info-group .group-goods .goods-tools {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
 }
 
 .home-cart .cart-content .cart-info .info-group .group-goods .goods-tools view {
