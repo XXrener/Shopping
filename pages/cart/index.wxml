@@ -91,7 +91,7 @@
             <!-- 合计 -->
           <view class="base-price">
               <view class="base-price-info">
-                  合计：<text class="price-totall">￥90000</text>
+                  合计：<text class="price-totall">￥{{totalling}}</text>
               </view>
                 <view>
                     包含运费
@@ -100,7 +100,7 @@
           </view>
             <!-- 结算 -->
             <view class="base-close">
-                结算（2）
+                结算({{totallnum}})
             </view>
               
      </view>

@@ -11,7 +11,10 @@ Page({
     //商品详情
     cart:[],
     // 全选
-    allChecked:false
+    allChecked:false,
+    //总价格 总数量
+    totalling:0,
+    totallnum:0
   },
   /* 自定义事件 */
   //收货地址
@@ -23,12 +26,28 @@ Page({
     let address = wx.getStorageSync('address');
     //购买商品存在为0情况 使用或运算符  商品为零 取空数组 确保变量类型正确
     let cart = wx.getStorageSync('cart')||[];
-    let allChecked = cart.length?cart.every( i => i.checked ===true ):false;
-    console.log(cart,"商品数据");
+
+    //不用单独遍历 直接在计算总价格时判断 提高性能
+    // let allChecked = cart.length?cart.every( i => i.checked ===true ):false;
+    let allChecked = true;
+    let totalling = 0;
+    let totallnum = 0;
+    cart.forEach(v =>{
+      if(v.checked===true){
+          totalling+= v.goods_price*v.num;
+          totallnum +=v.num
+      }else{
+        allChecked=false
+      }
+    })
+    //二次判定 购物车为零时 让全选=false
+    allChecked=cart.length!=0?allChecked:false;
     this.setData({
       address,
       cart,
-      allChecked
+      allChecked,
+      totalling,
+      totallnum
     })
       
   },
