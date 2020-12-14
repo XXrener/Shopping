@@ -62,6 +62,12 @@ Page({
        this.GoodsList.num = 1;
        this.GoodsList.checked = true;
        cart.push(this.GoodsList)
+       wx.showToast({
+        title: '已加入购物车',
+        icon: 'success',
+        duration: 1500,
+        mask: true,
+      });
      }else{
        if(cart.num>=this.GoodsList.goods_number){
          wx.showToast({
@@ -73,15 +79,15 @@ Page({
            
        }else{
         
-         cart[index].num++;
+         cart[index].num++; 
          wx.showToast({
-           title: '已加入购物车',
-           icon: 'success',
-           duration: 1500,
-           mask: true,
-         });
-           
+          title: '已加入购物车',
+          icon: 'success',
+          duration: 1500,
+          mask: true,
+        });  
        }
+      
      }
     //  把更新的数组存入缓存中
      wx.setStorageSync('cart',cart);

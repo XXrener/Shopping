@@ -57,13 +57,13 @@
                             </view>
                             <!-- 数量工具 -->
                             <view class="goods-tools">
-                                <view bindtap="reduce" data-id="{{item.goods_id}}">
+                                <view bindtap="changeNumber" data-id="{{item.goods_id}}" data-num="{{-1}}">
                                     -
                                 </view>
-                                    <view class="num">
+                                    <view class="num"> 
                                         {{item.num}}
                                     </view>
-                                    <view bindtap="augment" data-id="{{item.goods_id}}">
+                                    <view bindtap="changeNumber" data-id="{{item.goods_id}}" data-num="{{1}}">
                                         +
                                     </view>
                                         

@@ -66,9 +66,9 @@ Page({
  },
  /* 商品全选框 */
  changeAllChecked(){
-  let {allChecked} = this.data;
+ 
   this.setData({
-    allChecked:!allChecked
+    allChecked:!this.data.allChecked
   })
   if(this.data.allChecked===false){
     let totalling = 0 ;
@@ -90,7 +90,7 @@ Page({
     //商品ID
     let {id} = e.currentTarget.dataset;
     //本页商品源数据
-    let {cart} = this.data;
+    let {cart} = this.data||[];
   
     cart.forEach( (v,index)=>{
       if(v.goods_id===id){
@@ -119,10 +119,53 @@ Page({
     })
     this.onPriceAndNumber(cart)
   },
+  /* 数量加减 */
+  changeNumber(e){
+    //值绑定 1 -1 同时获取商品ID和数量＋ /－
+    let {id,num} = e.currentTarget.dataset;
+    //获取源数组
+    let {cart} = this.data;
+    
+    //获取源数据的id
+    let index = cart.findIndex(v => v.goods_id === id);
+    console.log(cart[index].num=== 1 && num === -1,"真假");
+    // 设置数量为1时弹出提示  不为1时根据传来的值 直接加等于 源数据
+    if(cart[index].num=== 1 && num === -1){
+      wx.showModal({
+        title: '提示',
+        content: '是否删除商品',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            cart.splice(index,1)
+            console.log("有没有走到这里");
+            this.onPriceAndNumber(cart)
+          }
+        },
+        fail: () => {
+          console.log("你点击了取消");
+        },
+        complete: () => {}
+      });
+        
+    }else{
+      cart[index].num+=num;
+      this.onPriceAndNumber(cart)
+    }
+    console.log(cart,"删完之后");
+    //最后调用计算总价和总数量 重新复制 源数据 本地缓存
+   
+  },
   //计算总价格与数量
   onPriceAndNumber(arr){
    //接受数组
-   let cart = arr;
+   console.log(arr,"总价计算的传参");
+   let cart = arr||[];
+   console.log(cart,"你被赋了什么值");
    let totalling = 0;
    let totallnum = 0;
    let allChecked =true;
@@ -136,7 +179,7 @@ Page({
    })
   //  数组为 0 二次判断全选状态 
   allChecked = cart.length!=0?allChecked:false
-  // 保存页面数据
+  // 保存更新页面数据 
   this.setData({
     cart,
     totalling,
@@ -146,31 +189,4 @@ Page({
   // 将新数组覆盖本地缓存
   wx.setStorageSync("cart", cart);
  }
-  /* 消息提示
-  openConfirm: function () {
-    wx.showModal({
-        content: '检测到您没打开地址权限，是否去设置打开？',
-        confirmText: "确认",
-        cancelText: "取消",
-        success: function (res) {
-            if (res.confirm) {
-              console.log(res)  
-              wx.openSetting({
-                success: (result) => {
-                  console.log(res.authSetting,"打开授权")
-                },
-                fail: () => {},
-                complete: () => {}
-              });
-                
-              
-            } else {
-                console.log('用户点击取消')
-            }
-        }
-    }); 
-},  
- */     
-            
-
 })

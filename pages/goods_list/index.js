@@ -29,7 +29,7 @@ Page({
     // 总页数
     pagetotal:3
   },
-  /* page变量 get 请求参数 */
+  /*全局变量 不更刷新页面数据 page变量 get 请求参数 */
   QueryParams:{
     query:"",
     cid:"",
@@ -57,8 +57,8 @@ Page({
      console.log(res)
     // 计算总页数 总条数 / 页面条数 向上取整 Math.ceil()
     // 接口数据太多 测试下 直接设置总页数为3
-   /*  const total = res.total;
-    this.pagetotal = Math.ceil(total / this.QueryParams.pagesize) */
+    const total = res.total;
+    let pagetotal = Math.ceil(total / this.QueryParams.pagesize)
     
     // 更新本地数据存储方法 防止覆盖参数 数组拼接
     //方法1
@@ -66,7 +66,8 @@ Page({
     let data = this.data.goodslist;
     data.push(...res.goods)
     this.setData({
-      goodslist:data
+      goodslist:data,
+      pagetotal
     })
     
     /*  视频方法  
