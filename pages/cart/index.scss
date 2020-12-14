@@ -100,6 +100,17 @@ page{
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 2;
                     color: #666;
+                    position: relative;
+                    overflow: hidden;
+                    button{
+                        background-color: orange;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                      }
                 }
                 // 价格+数量工具
                 .group-goods{
@@ -109,6 +120,17 @@ page{
                       flex: 1;
                       color: red;
                       font-size: 36rpx;
+                      position: relative;
+                      overflow: hidden;
+                      button{
+                        background-color: orange;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                      }
                     }
                     .goods-tools{
                         flex: 1;

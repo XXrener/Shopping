@@ -1,5 +1,5 @@
 <!--pages/cart/index.wxml-->
-<view class="home-cart">
+<view class="home-cart" wx:if="{{emptyOfCart}}">
     <!-- 收货地址 -->
     <view class="shipping-address" wx:if="{{!address.all}}">
         <button type="default" plain bindtap="handleAddress">收货地址</button>
@@ -48,12 +48,14 @@
                         <!-- 商品描述 -->
                         <view class="goods-desc">
                             {{item.goods_name}}
+                            <button bindtap="handleStatus" data-id="{{item.goods_id}}"></button>
                         </view>
                         <!-- 价格+数量工具-->
                         <view class="group-goods">
                             <!-- 价格 -->
                             <view class="price">
                                 ￥{{item.goods_price}}
+                                <button bindtap="handleStatus" data-id="{{item.goods_id}}"></button>
                             </view>
                             <!-- 数量工具 -->
                             <view class="goods-tools">
@@ -106,4 +108,11 @@
      </view>
        
 </view>
+<view wx:else>
+    <view>
+        空空如也，赶紧去挑选合适的商品吧
+    </view>
+      
+</view>
+  
   

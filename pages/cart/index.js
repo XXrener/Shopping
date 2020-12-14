@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 购物车商品是否为空
+    emptyOfCart:true,
     //地址信息
     address:{},
     //商品详情
@@ -29,10 +31,13 @@ Page({
     let address = wx.getStorageSync('address');
     //购买商品存在为0情况 使用或运算符  商品为零 取空数组 确保变量类型正确
     let cart = wx.getStorageSync('cart')||[];
+    let emptyOfCart = cart.length!=0?true:false
+    console.log(cart,"你获取到源数据还是空数组");
     //调用计算价格与数量
     this.onPriceAndNumber(cart)
     this.setData({
-      address
+      address,
+      emptyOfCart
     })
       
   },
@@ -164,30 +169,79 @@ Page({
   //计算总价格与数量
   onPriceAndNumber(arr){
    //接受数组
-   console.log(arr,"总价计算的传参");
-   let cart = arr||[];
-   console.log(cart,"你被赋了什么值");
-   let totalling = 0;
-   let totallnum = 0;
-   let allChecked =true;
-   cart.forEach(v=>{
-     if(v.checked===true){
-       totalling += v.num * v.goods_price
-       totallnum +=v.num
-     }else{
-       allChecked= false
-     }
-   })
-  //  数组为 0 二次判断全选状态 
-  allChecked = cart.length!=0?allChecked:false
-  // 保存更新页面数据 
-  this.setData({
-    cart,
-    totalling,
-    totallnum,
-    allChecked
-  })
-  // 将新数组覆盖本地缓存
-  wx.setStorageSync("cart", cart);
- }
+    console.log(arr,"总价计算的传参");
+    let cart = arr||[];
+    console.log(cart,"你被赋了什么值");
+    let totalling = 0;
+    let totallnum = 0;
+    let allChecked =true;
+    cart.forEach(v=>{
+      if(v.checked===true){
+        totalling += v.num * v.goods_price
+        totallnum +=v.num
+      }else{
+        allChecked= false
+      }
+    })
+    //  数组为 0 二次判断全选状态 
+    allChecked = cart.length!=0?allChecked:false
+    //数据为零 显示购物车为空
+      let emptyOfCart = cart.length!=0?true:false
+    // 保存更新页面数据 
+    this.setData({
+      cart,
+      totalling,
+      totallnum,
+      allChecked,
+      emptyOfCart
+    })
+    // 将新数组覆盖本地缓存
+    wx.setStorageSync("cart", cart);
+  },
+  /* 点击商品状态栏 checked为真时：立即购买，checked为false:是否删除商品 */
+  handleStatus(e){
+   
+    let {id} = e.currentTarget.dataset;
+    console.log(id,"触发了我");
+    let cart = wx.getStorageSync('cart');
+    let index = cart.findIndex( v => v.goods_id === id)
+    console.log(index,"返回数组");
+    if(cart[index].checked === false){
+      wx.showModal({
+        title: '提示',
+        content: '是否删除商品',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            cart.splice(index,1)
+          }
+        },
+        fail: () => {console.log("取消");},
+        complete: () => {}
+      });
+        
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '是否立即购买',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            console.log("跳转到支付页")
+          }
+        },
+        fail: () => {},
+        complete: () => {}
+      });
+        
+    }
+  }
 })
