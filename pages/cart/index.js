@@ -66,7 +66,8 @@ Page({
  },
  /* 商品全选框 */
  changeAllChecked(){
- 
+   //获取本地缓存
+  let cart = wx.getStorageSync('cart');
   this.setData({
     allChecked:!this.data.allChecked
   })
@@ -77,13 +78,13 @@ Page({
       totalling,
       totallnum
     })
+    cart.forEach( v => v.checked =false)
   }else{
-    let cart = wx.getStorageSync('cart');
-    cart.forEach( v=> v.checked =true)
-    this.onPriceAndNumber(cart)
-      
+    
+    cart.forEach( v=> v.checked =true)   
   }
-  console.log(allChecked,"全选值")
+  this.onPriceAndNumber(cart)
+  console.log(this.data.allChecked,"全选值")
  },
 //  商品数量减
   reduce(e){
